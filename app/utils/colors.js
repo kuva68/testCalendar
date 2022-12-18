@@ -6,5 +6,6 @@ export const COLORS = {
   DISABLED_BACKGROUND: '#D9D9D9',
   BLUE: '#0000ff',
   LIGHT_CYAN: '#e0ffff',
+  LIGHT_GREY: '#e6e6e6',
   ROYAL_BLUE: '#00adf5',
 };

@@ -44,7 +44,7 @@ export default StyleSheet.create({
   verticalMargin: {
     marginVertical: scaledY(30),
   },
-  flatlistHourView: {
+  flatListHourView: {
     alignItems: 'center',
     marginBottom: scaledSize(10),
     justifyContent: 'space-between',

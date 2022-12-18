@@ -10,7 +10,7 @@ export default StyleSheet.create({
     alignSelf: 'center',
   },
   fiveDayFlatItem: {
-    borderBottomColor: '#e6e6e6',
+    borderBottomColor: COLORS.LIGHT_GREY,
     width: scaledSize(375),
     borderBottomWidth: 1,
     backgroundColor: COLORS.WHITE,
@@ -22,7 +22,7 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     paddingVertical: scaledY(20),
   },
-  rightitemView: {
+  rightItemView: {
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -31,7 +31,6 @@ export default StyleSheet.create({
   },
   animated: {
     overflow: 'hidden',
-
     backgroundColor: COLORS.ROYAL_BLUE,
   },
   textView: {

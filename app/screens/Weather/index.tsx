@@ -35,7 +35,7 @@ export const WeatherScreen: React.FC<WeatherScreenProps> = ({navigation}) => {
     ref?.current?.scrollTo(i, true);
     setIndex(i);
   };
-  const mValue = Animated.multiply(scaledSize(375) / scaledSize(160), scrollX);
+  const mValue = Animated.multiply(scaledSize(160) / scaledSize(375), scrollX);
 
   return (
     <SafeAreaView style={[styles.root]}>

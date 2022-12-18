@@ -26,10 +26,10 @@ export const OneDayComponent = () => {
         </View>
         <View style={styles.bottomView}>
           <Text style={[styles.text]} allowFontScaling={false}>
-            {`Humidity    ${currentTimeWeather?.main.humidity}  %`}
+            {`Humidity    ${currentTimeWeather?.main.humidity ?? ''}  %`}
           </Text>
           <Text style={[styles.text]} allowFontScaling={false}>
-            {`Pressure    ${currentTimeWeather?.main.pressure}  bar`}
+            {`Pressure    ${currentTimeWeather?.main.pressure ?? ''}  bar`}
           </Text>
           <View style={styles.divider} />
           <Text
@@ -38,7 +38,7 @@ export const OneDayComponent = () => {
             Wind
           </Text>
           <Text style={[styles.text, styles.gigText]} allowFontScaling={false}>
-            {`${currentTimeWeather?.wind.speed}  `}
+            {`${currentTimeWeather?.wind.speed ?? ''}  `}
             <Text allowFontScaling={false}>m/s</Text>
           </Text>
         </View>

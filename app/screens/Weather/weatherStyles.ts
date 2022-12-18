@@ -71,7 +71,6 @@ export default StyleSheet.create({
     width: scaledSize(75),
     height: scaledSize(3),
     borderRadius: scaledSize(2),
-    backgroundColor: 'yellow',
   },
   activeDot: {
     backgroundColor: COLORS.WHITE,

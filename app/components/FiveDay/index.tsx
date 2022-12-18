@@ -1,5 +1,6 @@
 import React, {useState, useRef} from 'react';
 import {Animated, FlatList, TouchableOpacity, View} from 'react-native';
+import dayjs from 'dayjs';
 
 import styles from './fiveDayStyles';
 import {useFiveDay} from '../../redux/app';
@@ -10,8 +11,7 @@ import {
   getCurrentDayWeather,
 } from '../../utils/helpers';
 import {WeatherList} from '../WeatherList';
-import {Text} from '..';
-import dayjs from 'dayjs';
+import {Text} from '../Text';
 import {Icon} from '../Icon';
 import {IWeatherList} from '../../services/api/apiTypes';
 
@@ -63,7 +63,6 @@ export const RenderItem = ({
   const dayMin = currentDayWeather?.night?.main?.temp_min
     ? Math.round(currentDayWeather?.night?.main?.temp_min - 274)
     : '';
-
   const onPress = () => {
     if (open) {
       animateClose();
@@ -81,15 +80,15 @@ export const RenderItem = ({
           <Text>{dayjs(item).format('dddd, D MM')}</Text>
           <Text>{currentWeather?.weather?.[0]?.description}</Text>
         </View>
-        <View style={styles.rightitemView}>
+        <View style={styles.rightItemView}>
           <Icon
             name={getIconName(currentWeather?.weather?.[0]?.description)}
             size={24}
             color={getIconColor(currentWeather?.weather?.[0]?.description)}
           />
           <View style={styles.rightView}>
-            <Text style={styles.center}>{dayMax ? `${dayMax} ℃` : ''}</Text>
-            <Text style={styles.center}>{dayMin ? `${dayMin} ℃` : ''}</Text>
+            <Text style={styles.center}>{`${dayMax} ℃`}</Text>
+            <Text style={styles.center}>{`${dayMin} ℃`}</Text>
           </View>
         </View>
       </TouchableOpacity>

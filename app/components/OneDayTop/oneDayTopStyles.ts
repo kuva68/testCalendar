@@ -22,7 +22,6 @@ export default StyleSheet.create({
   },
 
   flatlistHourView: {
-    //marginLeft: scaledSize(15),
     alignItems: 'center',
     marginBottom: scaledSize(10),
     justifyContent: 'space-between',

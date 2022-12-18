@@ -11,7 +11,7 @@ import {Icon} from '../Icon';
 export const WeatherList = ({data}: {data: IWeatherList[]}) => {
   const renderItem = ({item}: {item: IWeatherList}) => {
     return (
-      <View style={styles.flatlistHourView} key={item.dt_txt}>
+      <View style={styles.flatListHourView} key={item.dt_txt}>
         <Text style={[styles.white]} allowFontScaling={false}>
           {`${dayjs(item?.dt_txt).format('H')}`}
         </Text>
