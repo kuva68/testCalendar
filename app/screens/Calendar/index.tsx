@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Calendar} from 'react-native-calendars';
-import {SafeAreaView, TouchableOpacity, View} from 'react-native';
+import {SafeAreaView, TouchableOpacity, View, Pressable} from 'react-native';
 import {useDispatch} from 'react-redux';
 import dayjs from 'dayjs';
 
@@ -48,12 +48,14 @@ export const CalendarScreen: React.FC<CalendarScreenProps> = ({navigation}) => {
     }
   }, [fiveDay]);
 
+  const navigateToList = () => navigation.navigate('DrugableList');
+
   const RenderHeader = ({date}: {date: string}) => {
     return (
-      <View style={styles.headerView}>
+      <Pressable onPress={navigateToList} style={styles.headerView}>
         <Text preset="title">{dayjs(date).format('MMMM')}</Text>
         <Text>{dayjs(date).format('YYYY')}</Text>
-      </View>
+      </Pressable>
     );
   };
 
