@@ -1,90 +1,124 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef} from 'react';
 import Swiper from 'react-native-swiper';
 import {
   SafeAreaView,
   StatusBar,
   TouchableOpacity,
-  View,
   Platform,
   Animated,
+  ColorValue,
 } from 'react-native';
 
 import styles from './weatherStyles';
 import {WeatherScreenProps} from './weatherProps';
-import {
-  Header,
-  Text,
-  FiveDayComponent,
-  OneDayComponent,
-} from '../../components';
+import {Header, FiveDayComponent, OneDayComponent} from '../../components';
 import {COLORS} from '../../utils/colors';
 import {scaledSize} from '../../utils';
 
 export const WeatherScreen: React.FC<WeatherScreenProps> = ({navigation}) => {
   const onBackPress = () => navigation.goBack();
-  const [index, setIndex] = useState<number>(0);
+
   const ref = useRef<Swiper>(null);
 
   const scrollX = useRef(new Animated.Value(0)).current;
 
-  const onIndexChanged = (i: number) => {
-    setIndex(i);
-  };
-
   const onPress = (i: number) => {
     ref?.current?.scrollTo(i, true);
-    setIndex(i);
   };
   const mValue = Animated.multiply(scaledSize(160) / scaledSize(375), scrollX);
 
+  const bgColor: ColorValue = scrollX.interpolate({
+    inputRange: [0, scaledSize(375)],
+    outputRange: [COLORS.ROYAL_BLUE, COLORS.PRIMARY],
+  });
+
+  const animatedOpacity = scrollX.interpolate({
+    inputRange: [0, scaledSize(376)],
+    outputRange: [1, 0.6],
+  });
+
+  const animatedWidth = scrollX.interpolate({
+    inputRange: [0, 200, scaledSize(375)],
+    outputRange: [scaledSize(75), scaledSize(120), scaledSize(75)],
+  });
+
   return (
     <SafeAreaView style={[styles.root]}>
-      <StatusBar
-        backgroundColor={index === 0 ? COLORS.ROYAL_BLUE : '#4682b4'}
-        barStyle="light-content"
-      />
+      <StatusBar backgroundColor={bgColor} barStyle="light-content" />
       {Platform.OS === 'ios' && (
-        <View
-          style={[styles.bottomWhite, index === 1 && styles.switcherDark]}
+        <Animated.View
+          style={[
+            styles.bottomWhite,
+            {
+              backgroundColor: bgColor,
+            },
+          ]}
         />
       )}
       <Header
         onBackPress={onBackPress}
         backLabel="Back"
-        style={[styles.header, index === 1 && styles.switcherDark]}
+        style={[
+          styles.header,
+          {
+            backgroundColor: bgColor,
+          },
+        ]}
         isWhite={true}
       />
-      <View style={[styles.switcher, index === 1 && styles.switcherDark]}>
+      <Animated.View
+        style={[
+          styles.switcher,
+          {
+            backgroundColor: bgColor,
+          },
+        ]}>
         <TouchableOpacity onPress={() => onPress(0)}>
-          <Text style={[styles.white, index === 0 && styles.accent]}>
+          <Animated.Text
+            style={[
+              styles.white,
+              {
+                opacity: animatedOpacity,
+              },
+            ]}>
             One day
-          </Text>
+          </Animated.Text>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => onPress(1)}>
-          <Text style={[styles.white, index === 1 && styles.accent]}>
+          <Animated.Text
+            style={[
+              styles.white,
+              {
+                opacity: animatedOpacity,
+              },
+            ]}>
             Five day
-          </Text>
+          </Animated.Text>
         </TouchableOpacity>
-      </View>
-      <View
+      </Animated.View>
+      <Animated.View
         style={[
           styles.switcherBottom,
-          index === 1 && styles.switcherBottomDark,
+          {
+            backgroundColor: bgColor,
+          },
         ]}>
         <Animated.View
           style={[
             styles.dot,
             styles.activeDot,
-            {transform: [{translateX: mValue}]},
+            {
+              transform: [{translateX: mValue}],
+              width: animatedWidth,
+            },
           ]}
         />
-      </View>
+      </Animated.View>
       <Swiper
         showsButtons={false}
         loop={false}
         showsPagination={false}
-        onIndexChanged={onIndexChanged}
         scrollEventThrottle={1}
         onScroll={Animated.event([
           {
@@ -96,7 +130,11 @@ export const WeatherScreen: React.FC<WeatherScreenProps> = ({navigation}) => {
           },
         ])}
         ref={ref}>
-        <OneDayComponent />
+        <OneDayComponent
+          style={{
+            backgroundColor: bgColor,
+          }}
+        />
         <FiveDayComponent />
       </Swiper>
     </SafeAreaView>

@@ -12,8 +12,10 @@ import rootSaga from '../sagas';
 // Reducers
 
 import {appReducer} from './app';
+import {loadersReducer} from './loaders';
 export const rootReducer = combineReducers({
   app: appReducer,
+  loaders: loadersReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

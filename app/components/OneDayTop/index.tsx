@@ -27,19 +27,19 @@ export const OneDayTop = () => {
     | undefined = getCurrentDayWeather(oneDay);
 
   const dayMax = currentDayWeather?.day?.main?.temp_max
-    ? Math.round(currentDayWeather?.day?.main?.temp_max - 274)
+    ? Math.round(currentDayWeather?.day?.main?.temp_max - 273)
     : null;
 
   const dayMin = currentDayWeather?.night?.main?.temp_min
-    ? Math.round(currentDayWeather?.night?.main?.temp_min - 274)
+    ? Math.round(currentDayWeather?.night?.main?.temp_min - 273)
     : null;
 
   const temp = currentTimeWeather?.main.temp
-    ? Math.round(currentTimeWeather?.main.temp - 274)
+    ? Math.round(currentTimeWeather?.main.temp - 273)
     : '';
 
   const filsLike = currentTimeWeather?.main.feels_like
-    ? Math.round(currentTimeWeather?.main.feels_like - 274)
+    ? Math.round(currentTimeWeather?.main.feels_like - 273)
     : '';
 
   return (

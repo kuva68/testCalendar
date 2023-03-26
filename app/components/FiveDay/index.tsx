@@ -57,11 +57,11 @@ export const RenderItem = ({
   const [open, setOpen] = useState(false);
 
   const dayMax = currentDayWeather?.day?.main?.temp_max
-    ? Math.round(+currentDayWeather?.day?.main?.temp_max - 274)
+    ? Math.round(+currentDayWeather?.day?.main?.temp_max - 273)
     : '';
 
   const dayMin = currentDayWeather?.night?.main?.temp_min
-    ? Math.round(currentDayWeather?.night?.main?.temp_min - 274)
+    ? Math.round(currentDayWeather?.night?.main?.temp_min - 273)
     : '';
   const onPress = () => {
     if (open) {

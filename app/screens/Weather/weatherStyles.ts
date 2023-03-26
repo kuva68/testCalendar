@@ -55,7 +55,7 @@ export default StyleSheet.create({
     fontWeight: '800',
     textShadowRadius: 3,
   },
-  switcherDark: {backgroundColor: '#4682b4'},
+  switcherDark: {backgroundColor: COLORS.PRIMARY},
   bottomWhite: {
     height: scaledY(60),
     backgroundColor: COLORS.ROYAL_BLUE,
@@ -86,6 +86,6 @@ export default StyleSheet.create({
     height: scaledY(5),
   },
   switcherBottomDark: {
-    backgroundColor: '#4682b4',
+    backgroundColor: COLORS.PRIMARY,
   },
 });

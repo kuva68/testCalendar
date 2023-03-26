@@ -61,9 +61,7 @@ export interface ICityResponse {
   };
   weather: IWeather[];
   base: string;
-
   main: IMain;
-
   visibility: number;
   wind: {
     speed: number;

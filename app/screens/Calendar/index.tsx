@@ -10,6 +10,7 @@ import {CalendarScreenProps} from './calendarProps';
 import {IDate, IIcons, IMarkedData} from '../../utils/types';
 import {Icon} from '../../components';
 import {useSetCurrentDay, useFiveDay, useGetFiveDay} from '../../redux/app';
+import {useLoader} from '../../redux/loaders';
 import {
   getDateFromFiveDays,
   getCurrentDayWeather,
@@ -26,7 +27,7 @@ export const CalendarScreen: React.FC<CalendarScreenProps> = ({navigation}) => {
   const fiveDay: IFiveDayResponse | null = useFiveDay();
   const setCurrentDay = useSetCurrentDay(dispatch);
   const oneDay = makeOneDay(fiveDay, dayjs().format()) ?? [];
-
+  const loader = useLoader('calendar');
   const currentDayWeather:
     | {
         day: IWeatherList | null;
@@ -48,11 +49,9 @@ export const CalendarScreen: React.FC<CalendarScreenProps> = ({navigation}) => {
     }
   }, [fiveDay]);
 
-  const navigateToList = () => navigation.navigate('DrugableList');
-
   const RenderHeader = ({date}: {date: string}) => {
     return (
-      <Pressable onPress={navigateToList} style={styles.headerView}>
+      <Pressable style={styles.headerView}>
         <Text preset="title">{dayjs(date).format('MMMM')}</Text>
         <Text>{dayjs(date).format('YYYY')}</Text>
       </Pressable>
@@ -106,11 +105,11 @@ export const CalendarScreen: React.FC<CalendarScreenProps> = ({navigation}) => {
   };
 
   const max = currentDayWeather?.day?.main?.temp_max
-    ? Math.round(currentDayWeather?.day?.main?.temp_max - 274)
+    ? Math.round(currentDayWeather?.day?.main?.temp_max - 273)
     : '';
 
   const min = currentDayWeather?.night?.main?.temp_min
-    ? Math.round(currentDayWeather?.night?.main?.temp_min - 274)
+    ? Math.round(currentDayWeather?.night?.main?.temp_min - 273)
     : '';
 
   const description = fiveDay?.list?.[0].weather?.[0]?.description ?? '';
@@ -124,7 +123,7 @@ export const CalendarScreen: React.FC<CalendarScreenProps> = ({navigation}) => {
         renderHeader={(date: string) => <RenderHeader date={date} />}
         enableSwipeMonths={true}
         style={styles.calendar}
-        displayLoadingIndicator
+        displayLoadingIndicator={loader}
         dayComponent={({date, marking}) => (
           <DayComponent date={date} marking={marking} />
         )}

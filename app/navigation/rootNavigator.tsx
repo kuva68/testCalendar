@@ -2,7 +2,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import {CalendarScreen, WeatherScreen, DrugableListScreen} from '../screens';
+import {CalendarScreen, WeatherScreen} from '../screens';
 import {GLOBAL_NAVIGATION_STACK_OPTIONS} from './options';
 
 export type RootParams = {
@@ -21,7 +21,6 @@ const RootNavigator = () => {
         initialRouteName="Calendar">
         <Stack.Screen name="Calendar" component={CalendarScreen} />
         <Stack.Screen name="Weather" component={WeatherScreen} />
-        <Stack.Screen name="DrugableList" component={DrugableListScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

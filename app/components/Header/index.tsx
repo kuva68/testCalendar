@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, ViewStyle} from 'react-native';
+import {View, Text, TouchableOpacity, ViewStyle, Animated} from 'react-native';
 import styles from './headerStyles';
 
 export interface HeaderProps {
@@ -18,7 +18,7 @@ export const Header: React.FC<HeaderProps> = ({
   style,
 }) => {
   return (
-    <View
+    <Animated.View
       style={[styles.root, !!onBackPress && styles.between, style && style]}>
       {onBackPress && (
         <TouchableOpacity style={styles.buttonBack} onPress={onBackPress}>
@@ -39,6 +39,6 @@ export const Header: React.FC<HeaderProps> = ({
       </Text>
 
       {onBackPress && <View style={styles.buttonBack} />}
-    </View>
+    </Animated.View>
   );
 };
